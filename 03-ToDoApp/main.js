@@ -19,7 +19,7 @@ function addTask() {
         taskList.appendChild(taskItem);
         taskInput.value = '';
     } else {
-        alert('Lütfen bir görev girin.');
+        alert('Zəhmət olmasa, xanayı doldurun.');
     }
 }
 
