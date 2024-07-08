@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basket</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .navbar {
+            display: flex;
+            justify-content: space-around;
+            background-color: #007bff;
+            padding: 15px;
+        }
+        .navbar a {
+            color: white;
+            padding: 14px 20px;
+            text-decoration: none;
+            text-align: center;
+            border-radius: 5px;
+        }
+        .navbar a:hover {
+            background-color: #0056b3;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .card {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px;
+            border-bottom: 1px solid #ccc;
+        }
+        .card:last-child {
+            border-bottom: none;
+        }
+        .card img {
+            width: 50px;
+            height: 50px;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+        .card-details {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .card-details span {
+            font-weight: bold;
+        }
+        .remove-button {
+            background-color: #dc3545;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .remove-button:hover {
+            background-color: #c82333;
+        }
+        .total-price {
+            text-align: right;
+            font-size: 20px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <a href="/products">Products</a>
+        <a href="/users">Users</a>
+        <a href="/favorites">Favorites</a>
+        <a href="/baskets">Baskets</a>
+    </div>
+    <div class="container">
+        <h2>Your Basket</h2>
+        <% if (basket.length > 0) { %>
+            <% basket.forEach(item => { %>
+                <div class="card">
+                    <img src="<%= item.imageUrl %>" alt="<%= item.name %>">
+                    <div class="card-details">
+                        <span><%= item.name %></span>
+                        <span><%= item.price %> ₼</span>
+                    </div>
+                    <button class="remove-button" onclick="removeFromBasket('<%= item.id %>')">Remove</button>
+                </div>
+            <% }); %>
+            <div class="total-price">Total: <%= total %> ₼</div>
+        <% } else { %>
+            <p>Your basket is empty.</p>
+        <% } %>
+    </div>
+    <script>
+        function removeFromBasket(productId) {
+            fetch(`/basket/remove/${productId}`, {
+                method: 'DELETE'
+            }).then(response => {
+                if (response.ok) {
+                    window.location.reload();
+                } else {
+                    alert('Failed to remove from basket');
+                }
+            }).catch(error => {
+                alert('Error: ' + error);
+            });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,69 @@
+{
+  "users": [
+    {
+      "id": 1720393599027,
+      "name": "Gurban",
+      "email": "gurban.gurbanzadeh@gmail.com",
+      "createdAt": "2024-07-07T23:06:39.027Z",
+      "surname": "Gurbanzada",
+      "password": "Salam123",
+      "updatedAt": "2024-07-07T23:25:32.273Z",
+      "imageUrl": "https://avatars.githubusercontent.com/u/98018715?v=4"
+    },
+    {
+      "id": 1720393852762,
+      "name": "Ramal",
+      "surname": "Hashimli",
+      "email": "ramalrh@code.edu.az",
+      "password": "Salam123",
+      "role": "client",
+      "createdAt": "2024-07-07T23:10:52.762Z",
+      "updatedAt": "2024-07-07T23:10:52.762Z",
+      "imageUrl": "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/2561898d-2c07-4302-9e1e-9e0c1dcc0eca/dbkheln-c6691a30-b89d-4b07-b4af-8f160d4eb322.jpg/v1/fill/w_1024,h_773,q_75,strp/berserk_guts_rage_by_dragonwarrior_h_dbkheln-fullview.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9NzczIiwicGF0aCI6IlwvZlwvMjU2MTg5OGQtMmMwNy00MzAyLTllMWUtOWUwYzFkY2MwZWNhXC9kYmtoZWxuLWM2NjkxYTMwLWI4OWQtNGIwNy1iNGFmLThmMTYwZDRlYjMyMi5qcGciLCJ3aWR0aCI6Ijw9MTAyNCJ9XV0sImF1ZCI6WyJ1cm46c2VydmljZTppbWFnZS5vcGVyYXRpb25zIl19.aMvxE9ZaWvHPgmr9uZvbIz1lm38I-ty7gSbBvnHk0oI"
+    },
+    {
+      "id": 1720394973595,
+      "name": "Saleh",
+      "surname": " Hacıyev",
+      "email": "saleh@code.edu.az",
+      "password": "Salam123",
+      "role": "client",
+      "createdAt": "2024-07-07T23:29:33.595Z",
+      "updatedAt": "2024-07-07T23:29:33.595Z",
+      "imageUrl": "https://code.edu.az/wp-content/uploads/2021/10/saleh-haciyev.jpeg"
+    },
+    {
+      "id": 1720395016757,
+      "name": "Nəriman",
+      "surname": "Əliyev",
+      "email": "nariman@code.edu.az",
+      "password": "Salam123",
+      "role": "client",
+      "createdAt": "2024-07-07T23:30:16.757Z",
+      "updatedAt": "2024-07-07T23:44:59.805Z",
+      "imageUrl": "https://media.licdn.com/dms/image/C5103AQGI2qiSMr-gcQ/profile-displayphoto-shrink_200_200/0/1517231779416?e=2147483647&v=beta&t=IoywuvPLChKpERa0rawyNp_avyLSI-JAvMhI4CztTIE"
+    },
+    {
+      "id": 1720395873309,
+      "name": "Natiq",
+      "surname": "Zeynalzadə",
+      "email": "natig@code.edu.az",
+      "password": "Salam123",
+      "role": "client",
+      "createdAt": "2024-07-07T23:44:33.309Z",
+      "updatedAt": "2024-07-07T23:44:33.309Z",
+      "imageUrl": "https://media.licdn.com/dms/image/D4E03AQGAVqelMVl-KQ/profile-displayphoto-shrink_200_200/0/1685710481616?e=2147483647&v=beta&t=WXDl2gUxYM0oBHLSVDgxZJwTKMLQawOdM8UKvM6CuVM"
+    },
+    {
+      "id": 1720395972975,
+      "name": "Nijat",
+      "surname": "Mansimov",
+      "email": "nijat.mansimov@code.edu.az",
+      "password": "Salam123",
+      "role": "client",
+      "createdAt": "2024-07-07T23:46:12.975Z",
+      "updatedAt": "2024-07-07T23:46:12.975Z",
+      "imageUrl": "https://media.licdn.com/dms/image/D4E03AQFURkl88nL7bA/profile-displayphoto-shrink_200_200/0/1718721411521?e=2147483647&v=beta&t=QMDWAX_yNSMlA66q3PnaKgIxA2FCl9JGV8i9qB787h4"
+    }
+  ]
+}

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .navbar {
+            display: flex;
+            justify-content: space-around;
+            background-color: #007bff;
+            padding: 15px;
+        }
+        .navbar a {
+            color: white;
+            padding: 14px 20px;
+            text-decoration: none;
+            text-align: center;
+            border-radius: 5px;
+        }
+        .navbar a:hover {
+            background-color: #0056b3;
+        }
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            padding: 20px;
+        }
+        .user-card {
+            width: 300px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.2s;
+        }
+        .user-card:hover {
+            transform: scale(1.05);
+        }
+        .user-card img {
+            width: 150px;
+            height: 150px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            object-fit: cover;
+            border: 3px solid;
+        }
+        .user-card h2 {
+            font-size: 1.5em;
+            margin: 0.5em 0;
+        }
+        .user-card p {
+            color: #666;
+            margin: 0.5em 0;
+        }
+        .button-group {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .button {
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            font-weight: normal;
+            transition: background-color 0.2s;
+        }
+        .edit-button {
+            background-color: #28a745;
+        }
+        .edit-button:hover {
+            background-color: #218838;
+        }
+        .delete-button {
+            background-color: #dc3545;
+        }
+        .delete-button:hover {
+            background-color: #c82333;
+        }
+        .create-button {
+            display: block;
+            width: 200px;
+            margin: 20px auto;
+            padding: 10px;
+            text-align: center;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 16px;
+            transition: background-color 0.2s;
+        }
+        .create-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <a href="/products">Products</a>
+        <a href="/users">Users</a>
+        <a href="/favorites">Favorites</a>
+        <a href="/baskets">Baskets</a>
+    </div>
+    <a href="/user/new" class="create-button">Create New User</a>
+    <div class="container">
+        <% const borderColors = ['#ff0000', '#ff9900', '#ffff00', '#00ff00', '#0000ff', '#800080']; %>
+        <% users.forEach((user, index) => { %>
+            <div class="user-card">
+                <img src="<%= user.imageUrl %>" alt="<%= user.name %>" style="border-color: <%= borderColors[index % borderColors.length] %>;">
+                <h2><%= user.name %> <%= user.surname %></h2>
+                <p>Email: <%= user.email %></p>
+                <div class="button-group">
+                    <a href="/user/edit/<%= user.id %>" class="button edit-button">Edit</a>
+                    <button onclick="deleteUser('<%= user.id %>')" class="button delete-button">Delete</button>
+                </div>
+            </div>
+        <% }); %>
+    </div>
+    <script>
+        function deleteUser(id) {
+            fetch('/user/' + id, {
+                method: 'DELETE',
+            }).then(response => {
+                if (response.ok) {
+                    location.reload();
+                } else {
+                    alert('Failed to delete user');
+                }
+            }).catch(error => {
+                alert('Error: ' + error);
+            });
+        }
+    </script>
+</body>
+</html>

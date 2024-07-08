@@ -1,0 +1,48 @@
+{
+  "products": [
+    {
+      "id": 1720391002689,
+      "name": "iPad Air 13-inch (M2)128 GB Blue",
+      "description": "İstehsalçı - Apple, Prosessorun tezliyi - 3.5 GHz, Daxili yaddaş - 128 GB",
+      "price": "1799.99",
+      "category": "Planşetlər",
+      "stock": "357",
+      "imageUrl": "https://kontakt.az/media/catalog/product/cache/5f267e97f6550e9d7e6043084ee14236/t/m/tm-dg-tbq-1105-tb-0507_1.png",
+      "createdAt": "2024-07-07T22:23:22.689Z",
+      "updatedAt": "2024-07-07T22:53:41.889Z"
+    },
+    {
+      "id": 1720392788636,
+      "name": "iPhone 15 Pro Max 1 TB Blue",
+      "description": "Ekran - 6.7\", Daxili yaddaş - 1 TB, Operativ yaddaş - 8 GB",
+      "price": "4489.99",
+      "category": "Smartfonlar",
+      "stock": "543",
+      "imageUrl": "https://kontakt.az/media/catalog/product/cache/5f267e97f6550e9d7e6043084ee14236/t/m/tm-dg-sbp-1105-sm-2524_1.png",
+      "createdAt": "2024-07-07T22:53:08.636Z",
+      "updatedAt": "2024-07-07T22:53:08.636Z"
+    },
+    {
+      "id": 1720392927278,
+      "name": "iPhone 15 Plus 512 GB Pink",
+      "description": "Ekran - 6.7\", Daxili yaddaş - 512 GB, Operativ yaddaş - 6 GB",
+      "price": "3079.99",
+      "category": "Smartfonlar",
+      "stock": "234",
+      "imageUrl": "https://kontakt.az/media/catalog/product/cache/5f267e97f6550e9d7e6043084ee14236/t/m/tm-dg-sbp-1105-sm-2495_1.png",
+      "createdAt": "2024-07-07T22:55:27.278Z",
+      "updatedAt": "2024-07-07T22:55:27.278Z"
+    },
+    {
+      "id": 1720393025115,
+      "name": "Apple Airpods Max Space Gray MGYH3RU/A",
+      "description": "Qulaqlığın növü - Tam ölçülü, Maksimal işləmə müddəti - 20 saatadək, Musiqi dinləmə müddəti - 20 saatadək",
+      "price": "1549.99",
+      "category": "Bluetooth simsiz qulaqlıqlar",
+      "stock": "342",
+      "imageUrl": "https://kontakt.az/media/catalog/product/cache/5f267e97f6550e9d7e6043084ee14236/2/0/201209150028622560.png",
+      "createdAt": "2024-07-07T22:57:05.115Z",
+      "updatedAt": "2024-07-07T22:57:05.115Z"
+    }
+  ]
+}

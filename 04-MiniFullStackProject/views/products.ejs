@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .navbar {
+            display: flex;
+            justify-content: space-around;
+            background-color: #007bff;
+            padding: 15px;
+        }
+        .navbar a {
+            color: white;
+            padding: 14px 20px;
+            text-decoration: none;
+            text-align: center;
+            border-radius: 5px;
+        }
+        .navbar a:hover {
+            background-color: #0056b3;
+        }
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            padding: 20px;
+        }
+        .card {
+            width: 300px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            text-align: center;
+            transition: transform 0.2s;
+            padding-bottom: 80px; /* Butonlar için alan bırak */
+            position: relative;
+        }
+        .card:hover {
+            transform: scale(1.05);
+        }
+        .card-header {
+            background-color: #007bff;
+            color: #fff;
+            padding: 15px;
+            margin: 0;
+            border-radius: 10px 10px 0 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 60px;
+        }
+        .card-header span {
+            max-width: 100%;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            display: inline-block;
+        }
+        .card-body {
+            padding: 20px;
+        }
+        .card img {
+            max-width: 100%;
+            height: auto;
+            max-height: 200px;
+            margin-top: 10px;
+            border-radius: 10px 10px 0 0;
+        }
+        .price {
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        .button-group {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            position: absolute;
+            bottom: 10px;
+            left: 0;
+            right: 0;
+            padding: 0 20px;
+        }
+        .button {
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            font-weight: normal;
+            transition: background-color 0.2s;
+        }
+        .edit-button {
+            background-color: #28a745;
+        }
+        .edit-button:hover {
+            background-color: #218838;
+        }
+        .delete-button {
+            background-color: #dc3545;
+        }
+        .delete-button:hover {
+            background-color: #c82333;
+        }
+        .create-button {
+            display: block;
+            width: 200px;
+            margin: 20px auto;
+            padding: 10px;
+            text-align: center;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 16px;
+            transition: background-color 0.2s;
+        }
+        .create-button:hover {
+            background-color: #0056b3;
+        }
+        .favorite-button {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+        }
+        .basket-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+        }
+        .favorite-button img, .basket-button img {
+            width: 30px;
+            height: 30px;
+            transition: opacity 0.2s;
+        }
+        .favorite-button img.favorite, .basket-button img.in-basket {
+            opacity: 1;
+        }
+        .favorite-button img.not-favorite, .basket-button img.not-in-basket {
+            opacity: 0.5;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <a href="/products">Products</a>
+        <a href="/users">Users</a>
+        <a href="/favorites">Favorites</a>
+        <a href="/baskets">Baskets</a>
+    </div>
+    <a href="/create" class="create-button">Create New</a>
+    <div class="container">
+        <% const favs = favorites ? favorites : []; %>
+        <% const basketItems = basket ? basket : []; %>
+        <% products.products.forEach(product => { %>
+            <div class="card" id="product-card-<%= product.id %>">
+                <div class="card-header">
+                    <span><%= product.name %></span>
+                </div>
+                <div class="card-body">
+                    <div style="position: relative;">
+                        <img src="<%= product.imageUrl %>" alt="<%= product.name %>">
+                        <button class="favorite-button" onclick="toggleFavorite('<%= product.id %>')">
+                            <% if (favs.find(fav => fav.id == product.id)) { %>
+                                <img src="/images/heart-filled.png" alt="Remove from Favorites" class="favorite" id="favorite-icon-<%= product.id %>">
+                            <% } else { %>
+                                <img src="/images/heart-outline.png" alt="Add to Favorites" class="not-favorite" id="favorite-icon-<%= product.id %>">
+                            <% } %>
+                        </button>
+                        <button class="basket-button" onclick="toggleBasket('<%= product.id %>')">
+                            <% if (basketItems.find(item => item.id == product.id)) { %>
+                                <img src="/images/basket-filled.png" alt="Remove from Basket" class="in-basket" id="basket-icon-<%= product.id %>">
+                            <% } else { %>
+                                <img src="/images/basket-outline.png" alt="Add to Basket" class="not-in-basket" id="basket-icon-<%= product.id %>">
+                            <% } %>
+                        </button>
+                    </div>
+                    <div class="price"><%= product.price %> ₼</div>
+                    <p><%= product.description %></p>
+                    <p><strong>Category:</strong> <%= product.category %></p>
+                    <p><strong>Stock:</strong> <%= product.stock %></p>
+                    <p><strong>Created At:</strong> <%= product.createdAt %></p>
+                    <p><strong>Updated At:</strong> <%= product.updatedAt %></p>
+                    <div class="button-group">
+                        <a href="/product/edit/<%= product.id %>" class="button edit-button">Edit</a>
+                        <button class="button delete-button" id="<%= product.id %>">Delete</button>
+                    </div>
+                </div>
+            </div>
+        <% }); %>
+    </div>
+    <script>
+        const favoriteProducts = new Set(<%- JSON.stringify(favs.map(fav => fav.id)) %>);
+        const basketProducts = new Set(<%- JSON.stringify(basketItems.map(item => item.id)) %>);
+
+        function toggleFavorite(productId) {
+            const icon = document.getElementById(`favorite-icon-${productId}`);
+            if (favoriteProducts.has(productId)) {
+                favoriteProducts.delete(productId);
+                icon.src = '/images/heart-outline.png';
+                icon.classList.remove('favorite');
+                icon.classList.add('not-favorite');
+                removeFromFavorites(productId);
+            } else {
+                favoriteProducts.add(productId);
+                icon.src = '/images/heart-filled.png';
+                icon.classList.remove('not-favorite');
+                icon.classList.add('favorite');
+                addToFavorites(productId);
+            }
+        }
+
+        function toggleBasket(productId) {
+            const icon = document.getElementById(`basket-icon-${productId}`);
+            if (basketProducts.has(productId)) {
+                basketProducts.delete(productId);
+                icon.src = '/images/basket-outline.png';
+                icon.classList.remove('in-basket');
+                icon.classList.add('not-in-basket');
+                removeFromBasket(productId);
+            } else {
+                basketProducts.add(productId);
+                icon.src = '/images/basket-filled.png';
+                icon.classList.remove('not-in-basket');
+                icon.classList.add('in-basket');
+                addToBasket(productId);
+            }
+        }
+
+        function addToFavorites(productId) {
+            fetch(`/favorites/add/${productId}`, {
+                method: 'POST'
+            }).then(response => {
+                if (!response.ok) {
+                    alert('Failed to add to favorites');
+                }
+            }).catch(error => {
+                alert('Error: ' + error);
+            });
+        }
+
+        function removeFromFavorites(productId) {
+            fetch(`/favorites/remove/${productId}`, {
+                method: 'DELETE'
+            }).then(response => {
+                if (!response.ok) {
+                    alert('Failed to remove from favorites');
+                }
+            }).catch(error => {
+                alert('Error: ' + error);
+            });
+        }
+        function addToBasket(productId) {
+        fetch(`/basket/add/${productId}`, {
+            method: 'POST'
+        }).then(response => {
+            if (!response.ok) {
+                alert('Failed to add to basket');
+            }
+        }).catch(error => {
+            alert('Error: ' + error);
+        });
+    }
+
+        function removeFromBasket(productId) {
+            fetch(`/basket/remove/${productId}`, {
+                method: 'DELETE'
+            }).then(response => {
+                if (!response.ok) {
+                    alert('Failed to remove from basket');
+                }
+            }).catch(error => {
+                alert('Error: ' + error);
+            });
+        }
+    </script>
+</body>
+</html>

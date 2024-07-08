@@ -1,0 +1,21 @@
+{
+  "name": "rcs103",
+  "version": "1.0.0",
+  "description": "RCS103 Tasks for Education",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^4.19.2",
+    "fs": "^0.0.1-security",
+    "nodemon": "^3.1.4"
+  },
+  "devDependencies": {
+    "eslint": "^9.6.0"
+  }
+}
