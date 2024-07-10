@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Favorites</title>
     <style>
+        /* CSS stil ayarları */
         body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
@@ -42,7 +43,7 @@
             overflow: hidden;
             text-align: center;
             transition: transform 0.2s;
-            padding-bottom: 80px; /* Butonlar için alan bırak */
+            padding-bottom: 80px;
             position: relative;
         }
         .card:hover {
@@ -80,25 +81,31 @@
             font-weight: bold;
             margin-top: 10px;
         }
-        .favorite-button {
+        .button-group {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
             position: absolute;
             bottom: 10px;
-            right: 10px;
-            background: none;
+            left: 0;
+            right: 0;
+            padding: 0 20px;
+        }
+        .button {
+            color: #fff;
             border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
             cursor: pointer;
-            padding: 0;
+            text-decoration: none;
+            font-weight: normal;
+            transition: background-color 0.2s;
         }
-        .favorite-button img {
-            width: 30px;
-            height: 30px;
-            transition: opacity 0.2s;
+        .remove-button {
+            background-color: #dc3545;
         }
-        .favorite-button img.favorite {
-            opacity: 1;
-        }
-        .favorite-button img.not-favorite {
-            opacity: 0.5;
+        .remove-button:hover {
+            background-color: #c82333;
         }
     </style>
 </head>
@@ -116,63 +123,28 @@
                     <span><%= product.name %></span>
                 </div>
                 <div class="card-body">
-                    <div style="position: relative;">
-                        <img src="<%= product.imageUrl %>" alt="<%= product.name %>">
-                        <button class="favorite-button" onclick="toggleFavorite('<%= product.id %>')">
-                            <img src="/images/heart-filled.svg" alt="Remove from Favorites" class="favorite" id="favorite-icon-<%= product.id %>">
-                        </button>
-                    </div>
+                    <img src="<%= product.imageUrl %>" alt="<%= product.name %>">
                     <div class="price"><%= product.price %> ₼</div>
                     <p><%= product.description %></p>
                     <p><strong>Category:</strong> <%= product.category %></p>
                     <p><strong>Stock:</strong> <%= product.stock %></p>
                     <p><strong>Created At:</strong> <%= product.createdAt %></p>
                     <p><strong>Updated At:</strong> <%= product.updatedAt %></p>
+                    <div class="button-group">
+                        <button class="button remove-button" onclick="removeFromFavorites('<%= product.id %>')">Remove from Favorites</button>
+                    </div>
                 </div>
             </div>
         <% }); %>
     </div>
     <script>
-        const favoriteProducts = new Set(<%- JSON.stringify(products.map(product => product.id)) %>);
-
-        function toggleFavorite(productId) {
-            const icon = document.getElementById(`favorite-icon-${productId}`);
-            const isFavorite = icon.classList.contains('favorite');
-
-            if (isFavorite) {
-                icon.src = '/images/heart-outline.svg';
-                icon.classList.remove('favorite');
-                icon.classList.add('not-favorite');
-                removeFromFavorites(productId);
-            } else {
-                icon.src = '/images/heart-filled.svg';
-                icon.classList.remove('not-favorite');
-                icon.classList.add('favorite');
-                addToFavorites(productId);
-            }
-        }
-
-        function addToFavorites(productId) {
-            fetch(`/favorites/add/${productId}`, {
-                method: 'POST'
-            }).then(response => {
-                if (!response.ok) {
-                    alert('Failed to add to favorites');
-                }
-            }).catch(error => {
-                alert('Error: ' + error);
-            });
-        }
-
         function removeFromFavorites(productId) {
             fetch(`/favorites/remove/${productId}`, {
                 method: 'DELETE'
             }).then(response => {
                 if (response.ok) {
                     const card = document.getElementById(`product-card-${productId}`);
-                    if (card) {
-                        card.remove();
-                    }
+                    card.remove();
                 } else {
                     alert('Failed to remove from favorites');
                 }

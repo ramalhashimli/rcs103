@@ -59,6 +59,18 @@
         .card-details span {
             font-weight: bold;
         }
+        .quantity {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .quantity span {
+            font-weight: normal;
+        }
+        .quantity-buttons {
+            display: flex;
+            gap: 10px;
+        }
         .remove-button {
             background-color: #dc3545;
             color: #fff;
@@ -94,8 +106,13 @@
                     <div class="card-details">
                         <span><%= item.name %></span>
                         <span><%= item.price %> ₼</span>
+                        <div class="quantity">
+                            <button class="remove-button" onclick="removeFromBasket('<%= item.productId %>')">-</button>
+                            <span><%= item.quantity %></span>
+                            <button class="remove-button" onclick="addToBasket('<%= item.productId %>')">+</button>
+                        </div>
                     </div>
-                    <button class="remove-button" onclick="removeFromBasket('<%= item.id %>')">Remove</button>
+                    <button class="remove-button" onclick="removeItemFromBasket('<%= item.productId %>')">Remove</button>
                 </div>
             <% }); %>
             <div class="total-price">Total: <%= total %> ₼</div>
@@ -104,6 +121,20 @@
         <% } %>
     </div>
     <script>
+        function addToBasket(productId) {
+            fetch(`/basket/add/${productId}`, {
+                method: 'POST'
+            }).then(response => {
+                if (response.ok) {
+                    window.location.reload();
+                } else {
+                    alert('Failed to add to basket');
+                }
+            }).catch(error => {
+                alert('Error: ' + error);
+            });
+        }
+
         function removeFromBasket(productId) {
             fetch(`/basket/remove/${productId}`, {
                 method: 'DELETE'
@@ -112,6 +143,20 @@
                     window.location.reload();
                 } else {
                     alert('Failed to remove from basket');
+                }
+            }).catch(error => {
+                alert('Error: ' + error);
+            });
+        }
+
+        function removeItemFromBasket(productId) {
+            fetch(`/basket/remove-item/${productId}`, {
+                method: 'DELETE'
+            }).then(response => {
+                if (response.ok) {
+                    window.location.reload();
+                } else {
+                    alert('Failed to remove item from basket');
                 }
             }).catch(error => {
                 alert('Error: ' + error);
